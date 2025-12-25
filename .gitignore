@@ -1,0 +1,15 @@
+# Ignore Data
+data/images_training_rev1/
+data/training_solutions_rev1.csv
+data/galaxy_dataset_final.csv
+
+# Keep the features file (optional - remove this line if you want to ignore it too)
+!data/galaxy_features.csv
+
+# Ignore Python cache and system files
+__pycache__/
+*.pyc
+.ipynb_checkpoints
+.DS_Store
+venv/
+.env
