@@ -114,7 +114,7 @@ def process_galaxy_pipeline(input_file, output_file):
 # --- Execution ---
 if __name__ == "__main__":
     # Ensure raw CSV file is in the same folder
-    input_csv = 'training_solutions_rev1.csv'
-    output_csv = 'galaxy_dataset_final.csv'
+    input_csv = 'data/training_solutions_rev1.csv'
+    output_csv = 'data/galaxy_dataset_final.csv'
     
     process_galaxy_pipeline(input_csv, output_csv)

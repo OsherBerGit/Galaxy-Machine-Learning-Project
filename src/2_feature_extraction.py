@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import cv2
 import os
-from skimage.feature import graycomatrix, graycoprops
 from skimage.measure import shannon_entropy
 
 # --- Configuration Constants ---
