@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score
 # --- Important Import ---
 # We import the class from the file we created above
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from custom_adaboost import CustomAdaBoost
+from galaxy_adaboost import GalaxyAdaBoost
 
 def train_and_save_final():
     print("--- Training Final Manual Model (Separated Class) ---")
@@ -27,8 +27,8 @@ def train_and_save_final():
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     # 2. Use the imported class
-    print("Initializing CustomAdaBoost...")
-    my_model = CustomAdaBoost(n_estimators=200)
+    print("Initializing GalaxyAdaBoost...")
+    my_model = GalaxyAdaBoost(n_estimators=200)
     
     # 3. Training
     print("Fitting model...")

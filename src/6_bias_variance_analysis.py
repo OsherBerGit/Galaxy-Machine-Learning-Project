@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from sklearn.ensemble import BaggingClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split

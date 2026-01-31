@@ -1,6 +1,4 @@
 import pandas as pd
-import numpy as np
-import sklearn
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import SGDClassifier, LogisticRegression
@@ -9,7 +7,7 @@ from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import StandardScaler
 
 def run_grid_search_with_logging():
-    print(f"--- Starting Grid Search with Detailed Logging (Sklearn v{sklearn.__version__}) ---")
+    print("--- Starting Grid Search with Detailed Logging ---")
 
     # 1. Load Data
     try:

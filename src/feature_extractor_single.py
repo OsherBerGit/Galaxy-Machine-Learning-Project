@@ -20,7 +20,6 @@ def extract_features_from_single_image(image_path):
 
     # 3. Separate color channels (OpenCV uses BGR)
     blue_channel = img[:, :, 0]
-    green_channel = img[:, :, 1]
     red_channel = img[:, :, 2]
 
     # 4. Convert to grayscale (for shape calculations)
@@ -30,7 +29,7 @@ def extract_features_from_single_image(image_path):
     
     # Color features (5 features - matching training)
     feat_mean_blue = np.mean(blue_channel)
-    feat_mean_green = np.mean(green_channel)
+    feat_mean_green = np.mean(img[:, :, 1])  # Green channel
     feat_mean_red = np.mean(red_channel)
     feat_std_blue = np.std(blue_channel)
     feat_std_red = np.std(red_channel)
@@ -46,12 +45,12 @@ def extract_features_from_single_image(image_path):
     if contours:
         largest_contour = max(contours, key=cv2.contourArea)
         feat_area = cv2.contourArea(largest_contour)
-        feat_perimeter = cv2.arcLength(largest_contour, True)
+        perimeter = cv2.arcLength(largest_contour, True)
         
-        if feat_perimeter == 0:
+        if perimeter == 0:
             feat_circularity = 0
         else:
-            feat_circularity = (4 * np.pi * feat_area) / (feat_perimeter ** 2)
+            feat_circularity = (4 * np.pi * feat_area) / (perimeter ** 2)
             
         if len(largest_contour) >= 5:
             ellipse = cv2.fitEllipse(largest_contour)

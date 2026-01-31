@@ -14,7 +14,6 @@ from PIL import Image
 
 # --- Load Custom Modules ---
 try:
-    from custom_adaboost import CustomAdaBoost 
     from feature_extractor_single import extract_features_from_single_image
 except ImportError as e:
     st.error(f"Import error: {e}")
@@ -54,8 +53,8 @@ def get_top_feature_from_logs():
 @st.cache_resource
 def load_model():
     try:
-        import custom_adaboost
-        sys.modules['custom_adaboost'] = custom_adaboost
+        import galaxy_adaboost
+        sys.modules['galaxy_adaboost'] = galaxy_adaboost
         
         model_path = os.path.join(project_root, 'models', 'final_galaxy_model.pkl')
         with open(model_path, 'rb') as f:
@@ -145,9 +144,9 @@ if app_mode == "🚀 Live Prediction":
                             st.markdown("#### Extracted Features:")
                             feature_names = [
                                 'Mean Blue', 'Mean Green', 'Mean Red',
-                                'Std Blue', 'Std Green', 'Std Red',
+                                'Std Blue', 'Std Red',
                                 'Entropy',
-                                'Area', 'Perimeter', 'Circularity', 'Eccentricity'
+                                'Circularity', 'Eccentricity', 'Area'
                             ]
                             
                             if features_array.shape[1] == len(feature_names):

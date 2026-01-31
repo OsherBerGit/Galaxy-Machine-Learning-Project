@@ -55,15 +55,15 @@
 
 ## 📁 Project Structure
 ```
-├── main.py                 # Streamlit dashboard
+├── main.py                   # Streamlit dashboard
 ├── src/
-│   ├── custom_adaboost.py  # Manual AdaBoost implementation
-│   ├── 1_prepare_data.py   # Data preprocessing
+│   ├── galaxy_adaboost.py    # Manual AdaBoost implementation
+│   ├── 1_prepare_data.py     # Data preprocessing
 │   ├── 2_feature_extraction.py
-│   └── ...                 # Analysis scripts
-├── data/                   # Dataset & results
-├── models/                 # Trained models
-└── plots/                  # Generated visualizations
+│   └── ...                   # Analysis scripts (3-7)
+├── data/                     # Dataset & results
+├── models/                   # Trained models
+└── plots/                    # Generated visualizations
 ```
 
 ---

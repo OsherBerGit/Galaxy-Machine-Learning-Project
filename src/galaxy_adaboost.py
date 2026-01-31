@@ -1,9 +1,9 @@
 import numpy as np
 from sklearn.tree import DecisionTreeClassifier
 
-class CustomAdaBoost:
+class GalaxyAdaBoost:
     """
-    Manual Implementation of AdaBoost.
+    Manual Implementation of AdaBoost for Galaxy Classification.
     Logic based on: Error -> Alpha -> Weight Update.
     """
     def __init__(self, n_estimators=200):
