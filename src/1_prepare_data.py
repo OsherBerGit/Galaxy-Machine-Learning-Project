@@ -1,3 +1,17 @@
+"""
+1_prepare_data.py - Data Preparation Pipeline
+
+This script processes the raw Galaxy Zoo dataset to create a clean, balanced dataset
+for binary classification (Spiral vs Elliptical galaxies).
+
+Steps:
+    1. Load the raw training_solutions_rev1.csv from Kaggle
+    2. Filter galaxies using confidence thresholds (Class1.1 > 0.8 for Elliptical, etc.)
+    3. Balance the dataset using undersampling to avoid class imbalance
+    4. Save the final dataset with filenames and labels to galaxy_dataset_final.csv
+
+Output: data/galaxy_dataset_final.csv
+"""
 import pandas as pd
 
 def load_data(input_csv):

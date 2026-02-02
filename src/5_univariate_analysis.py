@@ -1,3 +1,19 @@
+"""
+5_univariate_analysis.py - Single Feature Power Test
+
+This script tests the classification power of a single feature (std_blue) in isolation.
+
+Purpose:
+    Demonstrate that 'std_blue' alone can achieve ~84% accuracy using just one
+    decision stump. This proves it's the most discriminative feature and explains
+    why AdaBoost frequently selects it in early iterations.
+
+Method:
+    Train a Decision Stump (max_depth=1) using ONLY std_blue as input.
+    The stump finds the optimal threshold to separate Spiral vs Elliptical.
+
+Result: Proves the dominance of std_blue as a galaxy type separator.
+"""
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split

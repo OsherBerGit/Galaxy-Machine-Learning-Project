@@ -1,3 +1,22 @@
+"""
+2_feature_extraction.py - Image Feature Extraction Pipeline
+
+This script extracts 9 numerical features from each galaxy image for machine learning.
+
+Features extracted:
+    - Color: mean_blue, mean_green, mean_red, std_blue, std_red
+    - Texture: entropy (Shannon entropy for complexity measurement)
+    - Shape: circularity, eccentricity, area (from contour analysis)
+
+Process:
+    1. Load each image and crop the center (200x200) to remove black borders
+    2. Extract color statistics from BGR channels
+    3. Calculate texture complexity using entropy
+    4. Find contours and compute geometric features
+
+Input: data/galaxy_dataset_final.csv + images
+Output: data/galaxy_features.csv
+"""
 import pandas as pd
 import numpy as np
 import cv2

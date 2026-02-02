@@ -1,3 +1,20 @@
+"""
+6_bias_variance_analysis.py - Boosting vs Bagging Comparison
+
+This script compares Boosting (AdaBoost) with Bagging to demonstrate why
+Boosting is the right choice for this problem.
+
+Experiments:
+    1. Bagging with Stumps (Depth=1): Expected to FAIL (~66%) because Bagging
+       reduces variance but stumps have high bias. Averaging weak models = weak model.
+    2. Bagging with Deep Trees: Works well (~87%) because deep trees have high
+       variance which Bagging successfully reduces.
+    3. Boosting with Stumps: Works well (~87%) because Boosting reduces bias
+       by sequentially focusing on misclassified samples.
+
+Conclusion: Boosting is ideal for weak learners (stumps), Bagging is ideal for
+strong learners (deep trees). This justifies our AdaBoost approach.
+"""
 import pandas as pd
 from sklearn.ensemble import BaggingClassifier
 from sklearn.tree import DecisionTreeClassifier

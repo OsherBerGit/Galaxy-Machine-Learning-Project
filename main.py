@@ -240,6 +240,7 @@ elif app_mode == "🏆 Research: Model Comparison":
         from sklearn.model_selection import train_test_split
         from sklearn.metrics import accuracy_score
         from sklearn.preprocessing import StandardScaler
+        from galaxy_adaboost import GalaxyAdaBoost
         
         try:
             df = pd.read_csv(os.path.join(project_root, 'data', 'galaxy_features.csv'))
@@ -254,8 +255,14 @@ elif app_mode == "🏆 Research: Model Comparison":
         
         X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
         
+        # Train our manual implementation
+        our_model = GalaxyAdaBoost(n_estimators=200)
+        our_model.fit(X_train, y_train)
+        our_preds = our_model.predict(X_test)
+        our_acc = accuracy_score(y_test, our_preds)
+        
         models = {
-            "AdaBoost (Ours)": AdaBoostClassifier(
+            "AdaBoost (sklearn)": AdaBoostClassifier(
                 estimator=DecisionTreeClassifier(max_depth=1),
                 n_estimators=200, random_state=42
             ),
@@ -264,7 +271,7 @@ elif app_mode == "🏆 Research: Model Comparison":
             "SVM (RBF)": SVC(kernel='rbf', random_state=42)
         }
         
-        results = {}
+        results = {"AdaBoost (Manual)": our_acc}
         for name, model in models.items():
             model.fit(X_train, y_train)
             preds = model.predict(X_test)
@@ -275,21 +282,25 @@ elif app_mode == "🏆 Research: Model Comparison":
     comparison_results = run_benchmark_comparison()
     
     if comparison_results:
-        col1, col2, col3, col4 = st.columns(4)
+        col1, col2, col3, col4, col5 = st.columns(5)
         
         with col1:
-            acc = comparison_results.get("AdaBoost (Ours)", 0)
-            st.success("### AdaBoost (Ours)")
+            acc = comparison_results.get("AdaBoost (Manual)", 0)
+            st.success("### AdaBoost (Manual)")
             st.markdown(f"**{acc*100:.2f}%**")
         with col2:
+            acc = comparison_results.get("AdaBoost (sklearn)", 0)
+            st.success("### AdaBoost (sklearn)")
+            st.markdown(f"**{acc*100:.2f}%**")
+        with col3:
             acc = comparison_results.get("Random Forest", 0)
             st.info("### Random Forest")
             st.markdown(f"**{acc*100:.2f}%**")
-        with col3:
+        with col4:
             acc = comparison_results.get("Gradient Boosting", 0)
             st.warning("### Gradient Boosting")
             st.markdown(f"**{acc*100:.2f}%**")
-        with col4:
+        with col5:
             acc = comparison_results.get("SVM (RBF)", 0)
             st.error("### SVM (RBF)")
             st.markdown(f"**{acc*100:.2f}%**")

@@ -1,3 +1,24 @@
+"""
+3_grid_search_selection.py - Grid Search for Best Base Estimator
+
+This script performs a grid search to find the optimal base estimator and 
+number of iterations (n_estimators) for the AdaBoost classifier.
+
+Models tested:
+    - Decision Tree (Stump, max_depth=1)
+    - Perceptron (SGDClassifier with perceptron loss)
+    - Logistic Regression
+
+Iterations tested: [10, 50, 100, 200]
+
+For each configuration, the script logs:
+    - Final accuracy on test set
+    - Per-iteration details: Alpha (voting weight), Error, Decision Rule
+
+Output:
+    - data/grid_search_summary.csv (accuracy per configuration)
+    - data/grid_search_detailed_logs.csv (per-iteration training details)
+"""
 import pandas as pd
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.tree import DecisionTreeClassifier

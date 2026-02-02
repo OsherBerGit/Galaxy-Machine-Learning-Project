@@ -1,3 +1,20 @@
+"""
+galaxy_adaboost.py - Manual AdaBoost Implementation (CORE FILE)
+
+This is the heart of the project: a from-scratch implementation of the AdaBoost
+algorithm WITHOUT using sklearn.ensemble.AdaBoostClassifier.
+
+Algorithm Steps (per iteration):
+    1. Train a weak learner (Decision Stump) on weighted samples
+    2. Calculate weighted error: err = sum(weights * misclassified)
+    3. Calculate alpha (voting power): alpha = 0.5 * ln((1-err)/err)
+    4. Update sample weights: w *= exp(-alpha * y_true * y_pred)
+    5. Normalize weights to sum to 1
+
+Prediction: Weighted vote of all stumps -> sign(sum(alpha * prediction))
+
+This implementation follows the standard AdaBoost.M1 algorithm for binary classification.
+"""
 import numpy as np
 from sklearn.tree import DecisionTreeClassifier
 

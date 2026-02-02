@@ -1,3 +1,19 @@
+"""
+8_train_final_manual_model.py - Train and Save the Final Model
+
+This script trains the final GalaxyAdaBoost model (our manual implementation)
+and saves it as a pickle file for deployment in the Streamlit app.
+
+Process:
+    1. Load the feature dataset (galaxy_features.csv)
+    2. Split into train/test (80/20)
+    3. Initialize GalaxyAdaBoost with 200 estimators
+    4. Train on training data
+    5. Evaluate on test data and print accuracy
+    6. Save the trained model to models/final_galaxy_model.pkl
+
+Output: models/final_galaxy_model.pkl (ready for production use)
+"""
 import pandas as pd
 import pickle
 import sys

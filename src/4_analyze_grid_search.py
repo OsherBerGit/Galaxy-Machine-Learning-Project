@@ -1,3 +1,19 @@
+"""
+4_analyze_grid_search.py - Visualize AdaBoost Training Dynamics
+
+This script generates visualizations to understand how AdaBoost learns over iterations.
+
+Plots generated:
+    1. Alpha Decay: Shows how the voting power of each weak learner decreases
+       as the ensemble grows (later learners have less influence)
+    2. Error Evolution: Shows how the weighted error changes over iterations
+       (harder samples get higher weights, making the problem more difficult)
+    3. Feature Importance: Shows which features are most frequently selected
+       by the decision stumps during training
+
+Input: data/grid_search_detailed_logs.csv
+Output: plots/alpha_decay.png, plots/error_evolution.png, plots/feature_importance.png
+"""
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns

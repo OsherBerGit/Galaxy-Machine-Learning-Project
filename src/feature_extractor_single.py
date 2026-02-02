@@ -1,3 +1,23 @@
+"""
+feature_extractor_single.py - Single Image Feature Extractor (Production)
+
+This module extracts features from a SINGLE uploaded image for live prediction
+in the Streamlit app. It mirrors the exact feature extraction logic used during
+training (2_feature_extraction.py) to ensure consistency.
+
+Features (9 total, in exact order):
+    1. mean_blue    - Average blue channel intensity
+    2. mean_green   - Average green channel intensity  
+    3. mean_red     - Average red channel intensity
+    4. std_blue     - Standard deviation of blue channel (KEY FEATURE)
+    5. std_red      - Standard deviation of red channel
+    6. entropy      - Shannon entropy (texture complexity)
+    7. circularity  - How circular the galaxy shape is
+    8. eccentricity - How elongated the galaxy shape is
+    9. area         - Contour area in pixels
+
+CRITICAL: The feature order MUST match the training data exactly!
+"""
 import cv2
 import numpy as np
 from scipy.stats import entropy
