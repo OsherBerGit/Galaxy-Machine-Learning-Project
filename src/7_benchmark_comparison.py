@@ -126,6 +126,10 @@ def run_advanced_comparison():
     output_path = 'plots/advanced_comparison.png'
     plt.savefig(output_path)
     print(f"Saved: {output_path}")
+    
+    # Save results to CSV for Streamlit app
+    results_df.to_csv('data/benchmark_comparison_results.csv', index=False)
+    print("Saved: data/benchmark_comparison_results.csv")
 
 if __name__ == "__main__":
     run_advanced_comparison()

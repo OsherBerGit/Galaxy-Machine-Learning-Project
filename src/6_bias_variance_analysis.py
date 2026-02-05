@@ -98,6 +98,16 @@ def run_bagging_comparison():
     if acc_deep > acc_single:
         print("\nInsight: Bagging Deep Trees improved over a Single Tree.")
         print("Reason: Deep trees tend to Overfit. Bagging averaged them out to reduce Variance.")
+    
+    # Save results to CSV for Streamlit app
+    results_df = pd.DataFrame([
+        {'Model': 'AdaBoost (Stumps)', 'Accuracy': 0.8770},  # Reference from grid search
+        {'Model': 'Bagging (Stumps)', 'Accuracy': acc_stump},
+        {'Model': 'Bagging (Deep Trees)', 'Accuracy': acc_deep},
+        {'Model': 'Single Tree', 'Accuracy': acc_single}
+    ])
+    results_df.to_csv('data/bias_variance_results.csv', index=False)
+    print("\nSaved: data/bias_variance_results.csv")
 
 if __name__ == "__main__":
     run_bagging_comparison()
