@@ -96,7 +96,7 @@ def run_advanced_comparison():
         results.append({'Model': name, 'Accuracy': acc})
         
         remark = ""
-        if name == "AdaBoost (Baseline)": remark = "Your Project Algo"
+        if name == "AdaBoost (Baseline)": remark = "Project Algorithm"
         if acc > 0.90: remark = "Excellent!"
         
         print(f"{name:<25} | {acc:.4f}     | {remark}")

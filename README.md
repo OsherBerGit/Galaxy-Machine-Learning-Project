@@ -27,7 +27,7 @@
 
 ### ⚙️ Technical Highlights
 * **Manual AdaBoost:** Implemented from scratch with weighted decision stumps
-* **Feature Extraction:** 9 features (RGB means, std_blue, std_red, entropy, circularity, eccentricity, area)
+* **Feature Extraction:** 11 features (RGB means, RGB stds, entropy, area, perimeter, circularity, eccentricity)
 * **Grid Search:** Hyperparameter tuning with detailed logging
 
 ## 🚀 Quick Start

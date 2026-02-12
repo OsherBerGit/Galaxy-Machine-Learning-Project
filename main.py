@@ -144,18 +144,18 @@ if app_mode == "🚀 Live Prediction":
                             # D. Data Table
                             st.markdown("#### Extracted Features:")
                             feature_names = [
-                                'Mean Blue', 'Mean Green', 'Mean Red',
-                                'Std Blue', 'Std Red',
+                                'Mean Red', 'Mean Green', 'Mean Blue',
+                                'Std Red', 'Std Green', 'Std Blue',
                                 'Entropy',
-                                'Circularity', 'Eccentricity', 'Area'
+                                'Area', 'Perimeter', 'Circularity', 'Eccentricity'
                             ]
                             
                             if features_array.shape[1] == len(feature_names):
                                 df_features = pd.DataFrame(features_array, columns=feature_names)
                                 st.dataframe(df_features.style.highlight_max(axis=1))
                             
-                                # Insight Logic
-                                std_blue_val = features_array[0][3]
+                                # Insight Logic (std_blue is now at index 5)
+                                std_blue_val = features_array[0][5]
                                 st.info(f"💡 **Insight:** `Std Blue` is **{std_blue_val:.4f}**. "
                                         f"We know from training that **{top_feat}** is the most critical feature.")
                             else:

@@ -16,10 +16,21 @@ Conclusion: Boosting is ideal for weak learners (stumps), Bagging is ideal for
 strong learners (deep trees). This justifies our AdaBoost approach.
 """
 import pandas as pd
+import os
 from sklearn.ensemble import BaggingClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+
+def get_adaboost_accuracy():
+    """Load AdaBoost accuracy from grid search results."""
+    csv_path = 'data/grid_search_summary.csv'
+    if os.path.exists(csv_path):
+        df = pd.read_csv(csv_path)
+        row = df[(df['Model'] == 'Decision Tree') & (df['Total_Iters'] == 200)]
+        if not row.empty:
+            return row.iloc[0]['Final_Accuracy']
+    return 0.877  # Fallback default
 
 def run_bagging_comparison():
     print("--- Boosting vs. Bagging Comparison ---")
@@ -79,10 +90,11 @@ def run_bagging_comparison():
     # ---------------------------------------------------------
     # Final Report
     # ---------------------------------------------------------
+    ada_acc = get_adaboost_accuracy()
     print("\n" + "="*50)
     print(f"{'Model Architecture':<35} | {'Accuracy':<10}")
     print("="*50)
-    print(f"{'AdaBoost (Your Best Result)':<35} | {'~87.70%'}") # Hardcoded for reference
+    print(f"{'AdaBoost (Best Result)':<35} | {ada_acc*100:.2f}%")
     print("-" * 50)
     print(f"{'Bagging (Stumps - Depth 1)':<35} | {acc_stump*100:.2f}%")
     print(f"{'Bagging (Deep Trees - Unlimited)':<35} | {acc_deep*100:.2f}%")
@@ -90,7 +102,7 @@ def run_bagging_comparison():
     print("="*50)
 
     # Analysis / Insight generation
-    if acc_stump < 0.87:
+    if acc_stump < ada_acc:
         print("\nInsight: Bagging Stumps performed worse than Boosting Stumps.")
         print("Reason: Bagging reduces Variance, but Stumps have High Bias.")
         print("Boosting is designed to fix Bias (Underfitting), so it wins on Stumps.")
@@ -101,7 +113,7 @@ def run_bagging_comparison():
     
     # Save results to CSV for Streamlit app
     results_df = pd.DataFrame([
-        {'Model': 'AdaBoost (Stumps)', 'Accuracy': 0.8770},  # Reference from grid search
+        {'Model': 'AdaBoost (Stumps)', 'Accuracy': ada_acc},
         {'Model': 'Bagging (Stumps)', 'Accuracy': acc_stump},
         {'Model': 'Bagging (Deep Trees)', 'Accuracy': acc_deep},
         {'Model': 'Single Tree', 'Accuracy': acc_single}

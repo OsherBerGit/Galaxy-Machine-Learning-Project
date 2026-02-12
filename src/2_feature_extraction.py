@@ -1,12 +1,12 @@
 """
 2_feature_extraction.py - Image Feature Extraction Pipeline
 
-This script extracts 9 numerical features from each galaxy image for machine learning.
+This script extracts 11 numerical features from each galaxy image for machine learning.
 
-Features extracted:
-    - Color: mean_blue, mean_green, mean_red, std_blue, std_red
+Features extracted (in order):
+    - Color: mean_red, mean_green, mean_blue, std_red, std_green, std_blue
     - Texture: entropy (Shannon entropy for complexity measurement)
-    - Shape: circularity, eccentricity, area (from contour analysis)
+    - Shape: area, perimeter, circularity, eccentricity (from contour analysis)
 
 Process:
     1. Load each image and crop the center (200x200) to remove black borders
@@ -58,11 +58,12 @@ def extract_color_features(img):
     b_channel, g_channel, r_channel = cv2.split(img)
     
     features = {
-        'mean_blue': np.mean(b_channel),
-        'mean_green': np.mean(g_channel),
         'mean_red': np.mean(r_channel),
-        'std_blue': np.std(b_channel),
-        'std_red': np.std(r_channel)
+        'mean_green': np.mean(g_channel),
+        'mean_blue': np.mean(b_channel),
+        'std_red': np.std(r_channel),
+        'std_green': np.std(g_channel),
+        'std_blue': np.std(b_channel)
     }
     return features
 
@@ -79,13 +80,16 @@ def extract_texture_features(img_gray):
 def extract_shape_features(img_gray):
     """
     Calculates geometric features based on contours:
-    - Circularity: How close the shape is to a perfect circle.
-    - Eccentricity: How elongated the shape is (fitting an ellipse).
+    - Area: Size of the galaxy contour
+    - Perimeter: Length of the galaxy boundary
+    - Circularity: How close the shape is to a perfect circle
+    - Eccentricity: How elongated the shape is (fitting an ellipse)
     """
     features = {
+        'area': 0.0,
+        'perimeter': 0.0,
         'circularity': 0.0,
-        'eccentricity': 0.0,
-        'area': 0.0
+        'eccentricity': 0.0
     }
     
     # Thresholding to create a binary mask (Black & White)
@@ -103,6 +107,7 @@ def extract_shape_features(img_gray):
     perimeter = cv2.arcLength(largest_contour, True)
     
     features['area'] = area
+    features['perimeter'] = perimeter
 
     # 1. Calculate Circularity
     if perimeter > 0:
