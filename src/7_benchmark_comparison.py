@@ -47,7 +47,7 @@ def run_advanced_comparison():
 
     # 2. Define the Contenders
     models = {
-        # Your model (using sklearn only for fair comparison here)
+        # Boosting model (using sklearn only for fair comparison here)
         "AdaBoost (Baseline)": AdaBoostClassifier(
             estimator=DecisionTreeClassifier(max_depth=1),
             n_estimators=200, 

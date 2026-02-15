@@ -50,7 +50,7 @@ def run_bagging_comparison():
 
     # ---------------------------------------------------------
     # Experiment 1: Bagging with Stumps (Depth=1)
-    # Goal: Direct comparison with your AdaBoost result (which used Depth=1)
+    # Goal: Direct comparison with AdaBoost result (which used Depth=1)
     # ---------------------------------------------------------
     print("\n1. Training Bagging with Stumps (Depth=1)...")
     bagging_stump = BaggingClassifier(
