@@ -34,7 +34,7 @@
 
 1. **Clone & Install:**
     ```bash
-    git clone https://github.com/yourusername/Galaxy-Machine-Learning-Project.git
+    git clone https://github.com/OsherBerGit/Galaxy-Machine-Learning-Project.git
     cd Galaxy-Machine-Learning-Project
     pip install -r requirements.txt
     ```
